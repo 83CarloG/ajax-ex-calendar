@@ -21,12 +21,14 @@
 			</ul>
 			<!-- /Days -->
 
-
+		</div>
 	<!-- Template -->
 	<script id="day-template" type="text/x-handlebars-template">
 	<!-- <li class="day holiday">1 Gennaio<span class="holidayType"> - Capodanno</span></li> -->
   <div class="entry">
-		<li class="day holiday">{{day}} {{month}}</li>
+		<li class="day" data-date='{{dateComplete}}'>{{day}} {{month}}
+			<span class="holidayType"></span>
+		</li>
 	</script>
 	<!-- /Template -->
 
