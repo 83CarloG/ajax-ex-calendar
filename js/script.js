@@ -10,16 +10,17 @@ $(document).ready(function	() {
 
 	// Print days+month of my calendar
 	for (var i = 1; i <= momentDate.daysInMonth(); i++) {
+		var dataCompleteMoment = momentDate;
 		var context = {
 			day: i,
 			month: momentDate.format('MMMM'),
-			dateComplete: momentDate.format('YYYY-MM-DD')
+			dateComplete: dataCompleteMoment.format('YYYY-MM-DD')
 		};
 
 		var html = template(context);
 
 		$('#days').append(html);
-		momentDate.add(1, 'day');
+		dataCompleteMoment.add(1, 'day');
 	}
 
 	// Ajax
