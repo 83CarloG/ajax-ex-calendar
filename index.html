@@ -11,11 +11,12 @@
 		<div class="wrapper">
 			<!-- Month & Year -->
 			<header class="header">
-				<h1></h1>
-				<div class="action-area">
-					<div class="prev">&lt;&lt;Precedente</div>
-					<div class="next">Successivo&gt;&gt;</div>
-				</div>
+
+
+					<div class="prev">&lt;</div>
+					<h1></h1>
+					<div class="next">&gt;</div>
+
 			</header>
 			<!-- /Month & Year -->
 			<!-- Days -->
@@ -40,7 +41,8 @@
 	<!-- Template -->
 	<script id="day-template" type="text/x-handlebars-template">
 		<div class="day-block">
-			<span class="day" data-date='{{dateComplete}}'>{{day}} </span>
+			<span class="day" data-date='{{dateComplete}}'>{{day}}</span>
+			<br>
 			<span class="holidayType"></span>
 		</div>
 	</script>
