@@ -11,15 +11,13 @@ Evidenziare le festività nella lista
 $(document).ready(function	() {
 	// First day of my calendar
 	var date = moment('2018-01-01');
-
 	printCalendar(date);
 	printHolidays(date);
-	nextMonth(date);
-	prevMonth(date);
-// nextMonth
+	nextPrevMonth(date);
 });
 //  Function to print day + month in calendar
 function printCalendar (date)	{
+	$('#days li').remove();
 	var momentDate = date;
 
 	$('h1').text(momentDate.format('MMMM YYYY'));
@@ -35,10 +33,10 @@ function printCalendar (date)	{
 			month: momentDate.format('MMMM'),
 			dateComplete: dataCompleteMoment
 		};
-
 		var html = template(context);
 		$('#days').append(html);
 	}
+	return date;
 }
 // Function to serch and add: class holiday and text holidayType
 function printHolidays (date)	{
@@ -70,67 +68,26 @@ function printHolidays (date)	{
 		}
 	});
 }
-
+// Function Prev/Next Month
+function nextPrevMonth (date) {
+	$('.next, .prev').click(function	() {
+		var momentDate = date
+		// Just year 2018
+		if ($(this).hasClass('next') && (momentDate.month()	!==	11)) {
+			momentDate.add(1, 'month');
+		} else if ($(this).hasClass('prev') && (momentDate.month()	> 0))	{
+			momentDate.subtract(1, 'month');
+		}
+		// Print calendar and holidays
+		printCalendar(momentDate);
+		printHolidays(momentDate);
+	});
+}
+// Function to add zero to minutes < 10
 function addZero (x) {
 	if (x < 10) {
 		return ('0' + x);
 	} else {
 		return x;
 	}
-}
-function nextMonth (date) {
-	$('.next').click(function	() {
-		if (date.month() > 10) {
-			return true;
-		} else {
-			$('#days li').remove();
-			var momentDate = date.add(1, 'month');
-			$('h1').text(momentDate.format('MMMM YYYY'));
-			// Day-template Handlebars
-			var source = $('#day-template').html();
-			var template = Handlebars.compile(source);
-
-			// Print days+month of my calendar
-			for (var i = 1; i <= momentDate.daysInMonth(); i++) {
-				var dataCompleteMoment = date.format('YYYY') + '-' + date.format('MM') + '-' + addZero(i);
-				var context = {
-					day: i,
-					month: momentDate.format('MMMM'),
-					dateComplete: dataCompleteMoment
-				};
-				var html = template(context);
-				$('#days').append(html);
-			}
-			printHolidays(date);
-			return date;
-		}
-	});
-}
-function prevMonth (date) {
-	$('.prev').click(function	() {
-		if (date.month() === 0) {
-			return true;
-		} else {
-			$('#days li').remove();
-			var momentDate = date.subtract(1, 'month');
-			$('h1').text(momentDate.format('MMMM YYYY'));
-			// Day-template Handlebars
-			var source = $('#day-template').html();
-			var template = Handlebars.compile(source);
-
-			// Print days+month of my calendar
-			for (var i = 1; i <= momentDate.daysInMonth(); i++) {
-				var dataCompleteMoment = date.format('YYYY') + '-' + date.format('MM') + '-' + addZero(i);
-				var context = {
-					day: i,
-					month: momentDate.format('MMMM'),
-					dateComplete: dataCompleteMoment
-				};
-				var html = template(context);
-				$('#days').append(html);
-			}
-			printHolidays(date);
-			return date;
-		}
-	});
 }
