@@ -7,3 +7,6 @@
 	color: red;
 	font-weight: bold;
 }
+.prev, .next {
+	cursor: pointer;
+}
