@@ -1,5 +1,7 @@
 /*
-Milestone 2
+#	Milestone 1
+Creiamo il mese di Gennaio, e con la chiamata all'API inseriamo le festività.
+#	Milestone 2
 Diamo la possibilità di cambiare mese, gestendo il caso in cui l’API non possa ritornare festività.
 Attenzione!
 Ogni volta che cambio mese dovrò:
@@ -10,16 +12,16 @@ Evidenziare le festività nella lista
 */
 $(document).ready(function	() {
 	// First day of my calendar
-	var date = moment('2018-01-01');
+	const date = moment('2018-01-01')
+
 	printCalendar(date);
 	printHolidays(date);
 	nextPrevMonth(date);
 });
 //  Function to print day + month in calendar
 function printCalendar (date)	{
-	$('#days li').remove();
+	$('.days-of-month .day-block').detach();
 	var momentDate = date;
-
 	$('h1').text(momentDate.format('MMMM YYYY'));
 	// Day-template Handlebars
 	var source = $('#day-template').html();
@@ -34,8 +36,11 @@ function printCalendar (date)	{
 			dateComplete: dataCompleteMoment
 		};
 		var html = template(context);
-		$('#days').append(html);
+		$('.days-of-month').append(html);
 	}
+	var dayOfWeek = date.days() + 1;
+
+	$('.days-of-month .day-block:first-child').css('grid-column', dayOfWeek);
 	return date;
 }
 // Function to serch and add: class holiday and text holidayType
