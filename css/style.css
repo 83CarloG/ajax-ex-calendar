@@ -6,7 +6,6 @@
 
 }
 
-
 body	{
 	width: 100%;
 	height: 100%;
@@ -20,6 +19,7 @@ body	{
 	margin: 50px auto 0 auto;
 	padding: 24px;
 	background-color: #fff;
+	color: inherit;
 	border: 2px solid black;
 	border-radius: 8px;
 }
@@ -28,7 +28,6 @@ body	{
 	width: 100%;
 	display: flex;
 	margin: 20px;
-
 	justify-content: center;
 	align-items: center;
 }
@@ -50,7 +49,6 @@ body	{
 	height: 60px;
 	border-radius: 5px;
 	padding: 5px 10px;;
-	background-color: inherit;
 }
 .prev, .next {
 	margin: 0px 20px;
@@ -64,4 +62,28 @@ body	{
 	background-color: inherit;
 	color: red;
 	font-weight: bold;
+}
+.holidayType {
+	font-size: 10px;
+}
+
+/* Media Query */
+@media screen and (max-width: 992px) {
+	.wrapper {
+		padding: 12px;
+	}
+	h1 {
+		font-size: 24px;
+	}
+	.header {
+		margin: 10px auto;
+	}
+	.days-of-week,
+	.days-of-month {
+		grid-gap: 5px;
+		font-size: 12px;
+	}
+	.holidayType {
+		display: none;
+	}
 }

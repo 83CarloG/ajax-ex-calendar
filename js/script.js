@@ -17,7 +17,7 @@ $(document).ready(function	() {
 	printCalendar(date);
 	printHolidays(date);
 	nextPrevMonth(date);
-	// resizeSmallScreen();
+
 });
 //  Function to print day + month in calendar
 function printCalendar (date)	{
@@ -65,7 +65,7 @@ function printHolidays (date)	{
 
 					$('.day[data-date="'	+	holidayDate	+	'"]').parent().addClass('holiday');
 					console.log(holidayType);
-					$('.day[data-date="'	+	holidayDate	+	'"]').siblings().text(holidayType);
+					$('.day[data-date="'	+	holidayDate	+	'"]').siblings('span').text(holidayType);
 				}
 			}
 		},
@@ -96,31 +96,4 @@ function addZero (x) {
 	} else {
 		return x;
 	}
-}
-// TODO:
-function	resizeSmallScreen	()	{
-	// When the window is resized, check the size to determine your classes
-	$(window).resize(function()	{
-		// When the width and height meet your specific requirements or lower
-		if (($(window).width() <= 960)){
-			// If it is smaller or equal to 1024x768, apply your class
-			var weekdaysShort =	moment.updateLocale('en', {
-				weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-			});
-			var obj = [];
-					$('.days-of-week').each(function() {
-				  var childrenLis = $(this).find('li');
-					for (var i = 0; i < weekdaysShort.length; i++) {
-						obj[0].value[i] = weekdaysShort[i];
-					}
-					console.log(obj[0].value[i])
-
-			// for (var i = 0; i < weekdaysShort.length; i++) {
-			// 	console.log(weekdays[i])
-			// 	weekdays[i].text() = weekdaysShort[i];
-			// }
-     // }
-	 })
- }
-});
 }
